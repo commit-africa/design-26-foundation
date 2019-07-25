@@ -2,21 +2,8 @@ const html = require('html-template-tag');
 const axios = require('axios');
 const { AboutBlock } = require('../components/AboutBlock');
 
-const Banner = ({ image, heading, text, link, buttonText }) => html`
-  <article>
-    <figure class="split-image">
-      <img src="${image.url}" alt="${image.text}" />
-    </figure>
-    <div class="cta">
-      <h2>${heading}</h2>
-      <p>${text}</p>
-      <a class="button button-pink" href="${link}">${buttonText}</a>
-    </div>
-  </article>
-`;
-
-const page = ({ banner }) => html`
-  <div id="home-app" class="site-wrapper">
+const page = ({ banner, aboutBlocks }) => html`
+  <div id="about-app" class="site-wrapper">
     <header class="top-header" id="js-header">
       <div class="header-elements">
         <a class="logo" href="/">
@@ -35,11 +22,18 @@ const page = ({ banner }) => html`
       </div>
     </header>
     <main>
-      <section class="center-split">
-        $${Banner(banner.left)}
-        $${Banner(banner.right)}
+      <section class="top-image">
+        <figure class="top-image-figure">
+          <img src="${banner.image.url}" alt="${banner.image.text}">
+          <figcaption>
+            <h1>
+              ${banner.heading}
+            </h1>
+            <p>${banner.text}</p>
+          </figcaption>
+        </figure>
       </section>
-      ${banner.aboutBlocks.map(block => AboutBlock(block))}
+      ${aboutBlocks.map(block => AboutBlock(block))}
       <section class="funding-info">
         <article>
           <div class="funding-info-block watch-video">
@@ -75,50 +69,35 @@ const page = ({ banner }) => html`
 function transformData (response) {
   return {
     banner: {
-      left: {
-        image: {
-          url: response.acf.banner_image_left.url,
-          text: response.acf.banner_image_left.alt,
-        },
-        image: response.acf.banner_image_left,
-        heading: response.acf.banner_heading_left,
-        text: response.acf.banner_text_left,
-        buttonText: response.acf.button_text_text_left,
-        buttonUrl: response.acf.button_text_link_left,
+      image: {
+        url: response.acf.banner_image.url,
+        text: response.acf.banner_image.alt,
       },
-      right: {
+      heading: response.acf.banner_title,
+      text: response.acf.banner_text,
+    },
+    aboutBlocks: response.acf.home_block_repeater.map(function (props) {
+      return {
+        title: props.block_title,
+        content: props.block_content,
         image: {
-          url: response.acf.banner_image_right.url,
-          text: response.acf.banner_image_right.alt,
-        },
-        heading: response.acf.banner_heading_right,
-        text: response.acf.banner_text_right,
-        buttonText: response.acf.button_text_text_right,
-        buttonUrl: response.acf.button_text_link_right,
-      },
-      aboutBlocks: response.acf.home_block_repeater.map(function (props) {
-        return {
-          title: props.block_title,
-          content: props.block_content,
-          image: {
-            url: props.block_image.url,
-            text: props.block_image.alt,
-          },
+          url: props.block_image.url,
+          text: props.block_image.alt,
         }
-      }),
-    }
+      }
+    })
   }
 };
 
 module.exports = {
   layout: 'default',
-  title: 'Design26',
+  title: 'About | Design26',
   page,
   data: async () => {
-    const { data: banners } = await axios.get('http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/6');
+    const { data: banner } = await axios.get('http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/8');
 
     return {
-      ...transformData(banners),
+      ...transformData(banner),
     };
   },
 };
