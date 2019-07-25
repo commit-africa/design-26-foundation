@@ -1,23 +1,8 @@
 const html = require('html-template-tag');
 const axios = require('axios');
 
-const BlogPost = ({ title, content, buttonUrl, image, id }) => html`
-  <article class="blog-image">
-    <figure>
-      <img src="${image.url}" alt="${image.text}">
-    </figure>
-    <div class="blog-meta">
-      <h2>${title}</h2>
-      <p class="excerpt">
-        $${content}
-      </p>
-      <a href="${'/post?id=' + id}" class="blog-page-link">Read the story</a>
-    </div>
-  </article>
-`;
-
-const page = ({ banner, blogPosts }) => html`
-  <div id="blog-app" class="site-wrapper">
+const page = () => html`
+  <div id="gallery-app" class="site-wrapper">
     <header class="top-header" id="js-header">
       <div class="header-elements">
         <a class="logo" href="/">
@@ -38,17 +23,19 @@ const page = ({ banner, blogPosts }) => html`
     <main>
       <section class="top-image">
         <figure class="top-image-figure">
-          <img src="${banner.image.url}" alt="${banner.image.text}">
+          <img :src="banner.image.url" :alt="banner.image.text">
           <figcaption>
             <h1>
-              ${banner.heading}
+              {{ banner.heading }}
             </h1>
-            <p>${banner.text}</p>
+            <p>{{ banner.text }}</p>
           </figcaption>
         </figure>
       </section>
-      <section class="four-column-grid blog-landing">
-        ${blogPosts.map(post => BlogPost(post))}
+      <section class="four-column-grid gallery">
+        <a v-for="(image, i) in images" :key="i" :href="image.url">
+          <img :src="image.url" :alt="image.text">
+        </a>
       </section>
       <section class="funding-info">
         <article>
@@ -82,44 +69,9 @@ const page = ({ banner, blogPosts }) => html`
   </div>
 `;
 
-function transformData (response) {
-  return {
-    banner: {
-      image: {
-        url: response.acf.banner_image.url,
-        text: response.acf.banner_image.alt,
-      },
-      heading: response.acf.banner_header,
-      text: response.acf.banner_content,
-    },
-  }
-}
-
-function transformPostsArray (response) {
-  return response.map(function (props) {
-    return {
-      id: props.id,
-      title: props.title.rendered,
-      content: props.excerpt.rendered,
-      image: {
-        url: props.acf.image.url,
-        text: props.acf.image.text,
-      }
-    }
-  })
-}
 
 module.exports = {
   layout: 'default',
-  title: 'Blog | Design26',
+  title: 'Gallery | Design26',
   page,
-  data: async () => {
-    const { data } = await axios.get('http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/14');
-    const { data: blogPosts } = await axios.get('http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/posts'); 
-
-    return {
-      ...transformData(data),
-      blogPosts: transformPostsArray(blogPosts),
-    };
-  },
 };
