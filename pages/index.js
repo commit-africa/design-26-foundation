@@ -14,6 +14,18 @@ const Banner = ({ image, heading, text, link, buttonText }) => html`
   </article>
 `;
 
+const AboutBlock = ({ title, content, image }) => html`
+  <section class="two-column-grid about-info">
+    <article class="about-text">
+      <h2>${title}</h2>
+      <p>${content}</p>
+    </article>
+    <figure class="about-image">
+      <img src="${image.url}" alt="${image.text}">
+    </figure>
+  </section>
+`;
+
 const page = ({ banner }) => html`
   <div id="home-app" class="site-wrapper">
     <header class="top-header" id="js-header">
@@ -38,26 +50,7 @@ const page = ({ banner }) => html`
         $${Banner(banner.left)}
         $${Banner(banner.right)}
       </section>
-      <section v-for="({ title, content, image }, i) in aboutBlocks" :key="i" class="two-column-grid about-info">
-        <template v-if="(i % 2)">
-          <article class="about-text">
-            <h2>{{ title }}</h2>
-            <p>{{ content }}</p>
-          </article>
-          <figure class="about-image">
-            <img :src="image.url" :alt="image.text">
-          </figure>
-        </template>
-        <template v-else>
-          <figure class="about-image">
-            <img :src="image.url" :alt="image.text">
-          </figure>
-          <article class="about-text">
-            <h2>{{ title }}</h2>
-            <p>{{ content }}</p>
-          </article>
-        </template>
-      </section>
+      ${banner.aboutBlocks.map(block => AboutBlock(block))}
       <section class="funding-info">
         <article>
           <div class="funding-info-block watch-video">
