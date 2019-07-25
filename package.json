@@ -1,0 +1,18 @@
+{
+  "name": "design-26-foundation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/commit-africa/design-26-foundation.git",
+  "author": "Shailen Naidoo <naidooshailen648@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "html-template-tag": "^3.1.0",
+    "hydrogen-cli": "^0.3.1"
+  },
+  "scripts": {
+    "reload": "npx cross-env npx nodemon -w ./layouts -w ./pages -w ./public --exec \"npx hydrogen build --dev\"",
+    "serve": "npx cross-env npx serve ./dist",
+    "dev": "npx npm-run-all --parallel reload serve",
+    "build": "npx hydrogen build"
+  }
+}
