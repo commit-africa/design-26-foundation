@@ -81,9 +81,6 @@ const page = ({ banner }) => html`
       </div>
     </footer>
   </div>
-  <script src="/public/js/constants.js"></script>
-  <script src="/public/js/components.js"></script>
-  <script src="/public/js/home.js"></script>
 `;
 
 function transformData (response) {
