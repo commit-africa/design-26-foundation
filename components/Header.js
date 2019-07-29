@@ -9,7 +9,6 @@ const Header = () => html`
       <nav id="nav-primary" class="navigation">
         <ul>
           <li class="nav-primary-item"><a class="nav-primary-link current" href="/">Home</a></li>
-          <li class="nav-primary-item"><a class="nav-primary-link" href="/our-impact">Our impact</a></li>
           <li class="nav-primary-item"><a class="nav-primary-link" href="/about">About</a></li>
           <li class="nav-primary-item"><a class="nav-primary-link" href="/gallery">Gallery</a></li>
           <li class="nav-primary-item"><a class="nav-primary-link" href="/blog">Blog</a></li>

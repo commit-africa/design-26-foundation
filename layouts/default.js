@@ -1,4 +1,6 @@
 const html = require('html-template-tag');
+const { Header } = require('../components/Header');
+const { Footer } = require('../components/Footer');
 
 module.exports = ({ title, content, head }) => html`
   <!DOCTYPE html>
@@ -18,7 +20,11 @@ module.exports = ({ title, content, head }) => html`
     <title>${title}</title>
   </head>
   <body>
-    $${content}
+    <div id="home-app" class="site-wrapper">
+      $${Header()}
+      $${content}
+      $${Footer()}
+    </div>
   </body>
   </html>
 `;
