@@ -1,40 +1,11 @@
 const html = require('html-template-tag');
 const axios = require('axios');
+const { AboutBlock } = require('../../components/AboutBlock');
+const { Header } = require('../../components/Header');
 
-const BlogPost = ({ title, content, buttonUrl, image, id }) => html`
-  <article class="blog-image">
-    <figure>
-      <img src="${image.url}" alt="${image.text}">
-    </figure>
-    <div class="blog-meta">
-      <h2>${title}</h2>
-      <p class="excerpt">
-        $${content}
-      </p>
-      <a href="${'/post?id=' + id}" class="blog-page-link">Read the story</a>
-    </div>
-  </article>
-`;
-
-const page = ({ banner, blogPosts }) => html`
-  <div id="blog-app" class="site-wrapper">
-    <header class="top-header" id="js-header">
-      <div class="header-elements">
-        <a class="logo" href="/">
-          <img src="/assets/img/design26foundation-logo.jpg" alt="Design 26 Foundation">
-        </a>
-        <nav id="nav-primary" class="navigation">
-          <ul>
-            <li class="nav-primary-item">
-              <a class="nav-primary-link current" href="/">Home</a>
-            </li>
-            <li class="nav-primary-item"><a class="nav-primary-link" href="/about">About</a></li>
-            <li class="nav-primary-item"><a class="nav-primary-link" href="/blog">Blog</a></li>
-          </ul>
-          <a href="/donate" class="button button-small">Donate</a>
-        </nav>
-      </div>
-    </header>
+const page = ({ banner, aboutBlocks }) => html`
+  <div id="donate-app" class="site-wrapper">
+    $${Header()}
     <main>
       <section class="top-image">
         <figure class="top-image-figure">
@@ -47,9 +18,7 @@ const page = ({ banner, blogPosts }) => html`
           </figcaption>
         </figure>
       </section>
-      <section class="four-column-grid blog-landing">
-        ${blogPosts.map(post => BlogPost(post))}
-      </section>
+      ${aboutBlocks.map(block => AboutBlock(block))}
       <section class="funding-info">
         <article>
           <div class="funding-info-block watch-video">
@@ -89,37 +58,33 @@ function transformData (response) {
         url: response.acf.banner_image.url,
         text: response.acf.banner_image.alt,
       },
-      heading: response.acf.banner_header,
-      text: response.acf.banner_content,
+      heading: response.acf.banner_heading,
+      text: response.acf.banner_text,
     },
-  }
-}
-
-function transformPostsArray (response) {
-  return response.map(function (props) {
-    return {
-      id: props.id,
-      title: props.title.rendered,
-      content: props.excerpt.rendered,
-      image: {
-        url: props.acf.image.url,
-        text: props.acf.image.text,
+    aboutBlocks: response.acf.donate_repeater_block.map(function (props) {
+      return {
+        title: props.block_title,
+        content: props.block_content,
+        buttonText: props.block_button_text,
+        buttonUrl: props.block_button_url,
+        image: {
+          url: props.block_image.url,
+          text: props.block_image.text,
+        }
       }
-    }
-  })
-}
+    })
+  }
+};
 
 module.exports = {
   layout: 'default',
-  title: 'Blog | Design26',
+  title: 'Donate | Design26',
   page,
   data: async () => {
-    const { data } = await axios.get('http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/14');
-    const { data: blogPosts } = await axios.get('http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/posts'); 
+    const { data } = await axios.get('http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/16');
 
     return {
       ...transformData(data),
-      blogPosts: transformPostsArray(blogPosts),
     };
   },
 };

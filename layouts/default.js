@@ -1,15 +1,20 @@
 const html = require('html-template-tag');
 
-module.exports = ({ title, content }) => html`
+module.exports = ({ title, content, head }) => html`
   <!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="">
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/public/css/main.css">
+    <link rel="preload" as="font" type="font/woff2" href="/public/assets/fonts/Montserrat-Bold.woff" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/public/assets/fonts/Montserrat-Bold.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/public/assets/fonts/Montserrat-italic.woff" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/public/assets/fonts/Montserrat-italic.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/public/assets/fonts/Montserrat-Regular.woff" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/public/assets/fonts/Montserrat-Regular.woff2" crossorigin>
+    $${head}
     <title>${title}</title>
   </head>
   <body>

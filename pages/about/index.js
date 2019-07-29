@@ -1,26 +1,11 @@
 const html = require('html-template-tag');
 const axios = require('axios');
-const { AboutBlock } = require('../components/AboutBlock');
+const { AboutBlock } = require('../../components/AboutBlock');
+const { Header } = require('../../components/Header');
 
 const page = ({ banner, aboutBlocks }) => html`
-  <div id="donate-app" class="site-wrapper">
-    <header class="top-header" id="js-header">
-      <div class="header-elements">
-        <a class="logo" href="/">
-          <img src="/assets/img/design26foundation-logo.jpg" alt="Design 26 Foundation">
-        </a>
-        <nav id="nav-primary" class="navigation">
-          <ul>
-            <li class="nav-primary-item">
-              <a class="nav-primary-link current" href="/">Home</a>
-            </li>
-            <li class="nav-primary-item"><a class="nav-primary-link" href="/about">About</a></li>
-            <li class="nav-primary-item"><a class="nav-primary-link" href="/blog">Blog</a></li>
-          </ul>
-          <a href="/donate" class="button button-small">Donate</a>
-        </nav>
-      </div>
-    </header>
+  <div id="about-app" class="site-wrapper">
+    $${Header()}
     <main>
       <section class="top-image">
         <figure class="top-image-figure">
@@ -73,18 +58,16 @@ function transformData (response) {
         url: response.acf.banner_image.url,
         text: response.acf.banner_image.alt,
       },
-      heading: response.acf.banner_heading,
+      heading: response.acf.banner_title,
       text: response.acf.banner_text,
     },
-    aboutBlocks: response.acf.donate_repeater_block.map(function (props) {
+    aboutBlocks: response.acf.home_block_repeater.map(function (props) {
       return {
         title: props.block_title,
         content: props.block_content,
-        buttonText: props.block_button_text,
-        buttonUrl: props.block_button_url,
         image: {
           url: props.block_image.url,
-          text: props.block_image.text,
+          text: props.block_image.alt,
         }
       }
     })
@@ -93,13 +76,13 @@ function transformData (response) {
 
 module.exports = {
   layout: 'default',
-  title: 'Donate | Design26',
+  title: 'About | Design26',
   page,
   data: async () => {
-    const { data } = await axios.get('http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/16');
+    const { data: banner } = await axios.get('http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/8');
 
     return {
-      ...transformData(data),
+      ...transformData(banner),
     };
   },
 };

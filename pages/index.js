@@ -1,6 +1,7 @@
 const html = require('html-template-tag');
 const axios = require('axios');
 const { AboutBlock } = require('../components/AboutBlock');
+const { Header } = require('../components/Header');
 
 const Banner = ({ image, heading, text, link, buttonText }) => html`
   <article>
@@ -17,23 +18,7 @@ const Banner = ({ image, heading, text, link, buttonText }) => html`
 
 const page = ({ banner }) => html`
   <div id="home-app" class="site-wrapper">
-    <header class="top-header" id="js-header">
-      <div class="header-elements">
-        <a class="logo" href="/">
-          <img src="/assets/img/design26foundation-logo.jpg" alt="Design 26 Foundation">
-        </a>
-        <nav id="nav-primary" class="navigation">
-          <ul>
-            <li class="nav-primary-item">
-              <a class="nav-primary-link current" href="/">Home</a>
-            </li>
-            <li class="nav-primary-item"><a class="nav-primary-link" href="/about">About</a></li>
-            <li class="nav-primary-item"><a class="nav-primary-link" href="/blog">Blog</a></li>
-          </ul>
-          <a href="/donate" class="button button-small">Donate</a>
-        </nav>
-      </div>
-    </header>
+    $${Header()}
     <main>
       <section class="center-split">
         $${Banner(banner.left)}

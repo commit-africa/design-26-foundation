@@ -1,39 +1,27 @@
 const html = require('html-template-tag');
 const axios = require('axios');
-const { AboutBlock } = require('../components/AboutBlock');
+const { Header } = require('../../components/Header');
 
-const page = ({ banner, aboutBlocks }) => html`
-  <div id="about-app" class="site-wrapper">
-    <header class="top-header" id="js-header">
-      <div class="header-elements">
-        <a class="logo" href="/">
-          <img src="/assets/img/design26foundation-logo.jpg" alt="Design 26 Foundation">
-        </a>
-        <nav id="nav-primary" class="navigation">
-          <ul>
-            <li class="nav-primary-item">
-              <a class="nav-primary-link current" href="/">Home</a>
-            </li>
-            <li class="nav-primary-item"><a class="nav-primary-link" href="/about">About</a></li>
-            <li class="nav-primary-item"><a class="nav-primary-link" href="/blog">Blog</a></li>
-          </ul>
-          <a href="/donate" class="button button-small">Donate</a>
-        </nav>
-      </div>
-    </header>
+const page = () => html`
+  <div id="gallery-app" class="site-wrapper">
+    $${Header()}
     <main>
       <section class="top-image">
         <figure class="top-image-figure">
-          <img src="${banner.image.url}" alt="${banner.image.text}">
+          <img :src="banner.image.url" :alt="banner.image.text">
           <figcaption>
             <h1>
-              ${banner.heading}
+              {{ banner.heading }}
             </h1>
-            <p>${banner.text}</p>
+            <p>{{ banner.text }}</p>
           </figcaption>
         </figure>
       </section>
-      ${aboutBlocks.map(block => AboutBlock(block))}
+      <section class="four-column-grid gallery">
+        <a v-for="(image, i) in images" :key="i" :href="image.url">
+          <img :src="image.url" :alt="image.text">
+        </a>
+      </section>
       <section class="funding-info">
         <article>
           <div class="funding-info-block watch-video">
@@ -66,38 +54,9 @@ const page = ({ banner, aboutBlocks }) => html`
   </div>
 `;
 
-function transformData (response) {
-  return {
-    banner: {
-      image: {
-        url: response.acf.banner_image.url,
-        text: response.acf.banner_image.alt,
-      },
-      heading: response.acf.banner_title,
-      text: response.acf.banner_text,
-    },
-    aboutBlocks: response.acf.home_block_repeater.map(function (props) {
-      return {
-        title: props.block_title,
-        content: props.block_content,
-        image: {
-          url: props.block_image.url,
-          text: props.block_image.alt,
-        }
-      }
-    })
-  }
-};
 
 module.exports = {
   layout: 'default',
-  title: 'About | Design26',
+  title: 'Gallery | Design26',
   page,
-  data: async () => {
-    const { data: banner } = await axios.get('http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/8');
-
-    return {
-      ...transformData(banner),
-    };
-  },
 };
