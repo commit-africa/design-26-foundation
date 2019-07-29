@@ -1,9 +1,34 @@
 const html = require('html-template-tag');
 const axios = require('axios');
-const { AboutBlock } = require('../components/AboutBlock');
 const { FundingInfo } = require('../components/FundingInfo');
 
-const Banner = ({ image, heading, text, link, buttonText }) => html`
+const AboutBlock = ({ title, content, image }, index) => html`
+  $${
+    index % 2 ? (
+      html`<section class="two-column-grid about-info">
+        <figure class="about-image">
+          <img src="${image.url}" alt="${image.text}">
+        </figure>
+        <article class="about-text">
+          <h2>${title}</h2>
+          <p>${content}</p>
+        </article>
+      </section>`
+    ) : (
+      html`<section class="two-column-grid about-info">
+        <article class="about-text">
+          <h2>${title}</h2>
+          <p>${content}</p>
+        </article>
+        <figure class="about-image">
+          <img src="${image.url}" alt="${image.text}">
+        </figure>
+      </section>`
+    )
+  }
+`;
+
+const Banner = ({ image, heading, text, link, buttonText }, index) => html`
   <article>
     <figure class="split-image">
       <img src="${image.url}" alt="${image.text}" />
@@ -22,7 +47,7 @@ const page = ({ banner }) => html`
       $${Banner(banner.left)}
       $${Banner(banner.right)}
     </section>
-    ${banner.aboutBlocks.map(block => AboutBlock(block))}
+    ${banner.aboutBlocks.map((block, index) => AboutBlock(block, index))}
     $${FundingInfo()}
   </main>
 `; 
