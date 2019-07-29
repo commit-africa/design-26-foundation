@@ -4,7 +4,7 @@ const Header = () => html`
   <header class="top-header" id="js-header">
     <div class="header-elements">
       <a class="logo" href="">
-        <img src="/assets/img/design26foundation-logo.jpg" alt="Design 26 Foundation">
+        <img src="/public/assets/img/design26foundation-logo.jpg" alt="Design 26 Foundation">
       </a>
       <nav id="nav-primary" class="navigation">
         <ul>
