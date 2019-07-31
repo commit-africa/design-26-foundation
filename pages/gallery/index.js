@@ -38,6 +38,8 @@ const page = () => html`
 
 module.exports = {
   layout: 'default',
-  title: 'Gallery | Design26',
   page,
+  head: ({ config }) => [
+    ['title', {}, `Gallery | ${config.name}`],
+  ],
 };

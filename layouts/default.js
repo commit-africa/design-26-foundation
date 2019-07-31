@@ -17,7 +17,7 @@ module.exports = ({ title, content, head }) => html`
     <link rel="preload" as="font" type="font/woff2" href="/public/assets/fonts/Montserrat-Regular.woff" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/public/assets/fonts/Montserrat-Regular.woff2" crossorigin>
     $${head}
-    <title>${title}</title>
+    $${title ? html`<title>${title}</title>` : ''}
   </head>
   <body>
     <div id="home-app" class="site-wrapper">

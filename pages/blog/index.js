@@ -77,7 +77,6 @@ function transformPostsArray (response) {
 
 module.exports = {
   layout: 'default',
-  title: 'Blog | Design26',
   page,
   data: async () => {
     const { data } = await axios.get('http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/14');
@@ -88,4 +87,7 @@ module.exports = {
       blogPosts: transformPostsArray(blogPosts),
     };
   },
+  head: ({ config }) => [
+    ['title', {}, `Blog | ${config.name}`],
+  ],
 };
