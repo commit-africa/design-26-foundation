@@ -17,6 +17,7 @@
     "build": "npx hydrogen build"
   },
   "devDependencies": {
+    "eslint": "^6.2.2",
     "live-server": "^1.2.1"
   }
 }
