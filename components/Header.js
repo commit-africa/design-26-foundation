@@ -10,7 +10,6 @@ const Header = () => html`
         <ul>
           <li class="nav-primary-item"><a class="nav-primary-link" href="/">Home</a></li>
           <li class="nav-primary-item"><a class="nav-primary-link" href="/about">About</a></li>
-          <li class="nav-primary-item"><a class="nav-primary-link" href="/gallery">Gallery</a></li>
           <li class="nav-primary-item"><a class="nav-primary-link" href="/blog">Blog</a></li>
           <li class="nav-primary-item"><a class="nav-primary-link" href="/contact">Contact</a></li>
         </ul>
