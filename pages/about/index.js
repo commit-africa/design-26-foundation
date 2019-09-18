@@ -59,7 +59,7 @@ module.exports = {
   layout: 'default',
   page,
   data: async () => {
-    const { data: banner } = await axios.get('http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/8');
+    const { data: banner } = await axios.get(`${process.env.API_URL}/pages/8`);
 
     return {
       ...transformData(banner),

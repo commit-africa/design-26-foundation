@@ -1,11 +1,11 @@
 var ENDPOINTS = {
-  'home': 'http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/6',
-  'about': 'http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/8',
-  'donate': 'http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/16',
-  'impact': 'http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/10',
-  'contact': 'http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/18',
-  'gallery': 'http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/12',
-  'blog': 'http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/pages/14',
+  'home': `${process.env.API_URL}/pages/6`,
+  'about': `${process.env.API_URL}/pages/8`,
+  'donate': `${process.env.API_URL}/pages/16`,
+  'impact': `${process.env.API_URL}/pages/10`,
+  'contact': `${process.env.API_URL}/pages/18`,
+  'gallery': `${process.env.API_URL}/pages/12`,
+  'blog': `${process.env.API_URL}/pages/14`,
 }
 
-var POSTS_ENDPOINT = 'http://design26foundation.org.za.www32.cpt1.host-h.net/wp-json/wp/v2/posts';
+var POSTS_ENDPOINT = `${process.env.API_URL}/posts`;
