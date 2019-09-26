@@ -1,8 +1,7 @@
 const html = require('html-template-tag');
 const axios = require('axios');
-const { Header } = require('../../components/Header');
 
-const BlogPost = ({ title, content, buttonUrl, image, id }) => html`
+const BlogPost = ({ title, content, image, id }) => html`
   <article class="blog-image">
     <figure>
       <img src="${image.url}" alt="${image.text}">
