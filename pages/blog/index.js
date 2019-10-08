@@ -11,7 +11,7 @@ const BlogPost = ({ title, content, image, id }) => html`
       <p class="excerpt">
         $${content}
       </p>
-      <a href="${'/post?id=' + id}" class="blog-page-link">Read the story</a>
+      <a href="/blog/${transformBlogTitleToUrl({ id, title })}" class="blog-page-link">Read the story</a>
     </div>
   </article>
 `;
@@ -47,6 +47,8 @@ const page = ({ data: { banner, blogPosts } }) => html`
   </main>
 `;
 
+const transformBlogTitleToUrl = ({ id, title }) => `${id}-${title.toLowerCase().split(' ').join('-')}`;
+
 function transformData (response) {
   return {
     banner: {
@@ -79,7 +81,7 @@ module.exports = {
   page,
   data: async () => {
     const { data } = await axios.get(`${process.env.API_URL}/pages/14`);
-    const { data: blogPosts } = await axios.get(`${process.env.API_URL}/posts`); 
+    const { data: blogPosts } = await axios.get(`${process.env.API_URL}/posts`);
 
     return {
       ...transformData(data),

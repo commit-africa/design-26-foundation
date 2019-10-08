@@ -64,7 +64,7 @@ module.exports = {
       ...transformData(banner),
     };
   },
-  head: ({ path, config }) => [
+  head: ({ config }) => [
     ['title', {}, `About | ${config.name}`],
   ],
 };

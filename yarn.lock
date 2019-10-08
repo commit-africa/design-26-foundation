@@ -677,6 +677,11 @@ crypto-random-string@^1.0.0:
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
   integrity sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4=
 
+date-fns@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.4.1.tgz#b53f9bb65ae6bd9239437035710e01cf383b625e"
+  integrity sha512-2RhmH/sjDSCYW2F3ZQxOUx/I7PvzXpi89aQL2d3OAxSTwLx6NilATeUbe0menFE3Lu5lFkOFci36ivimwYHHxw==
+
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -1419,10 +1424,10 @@ http-errors@~1.7.2:
   resolved "https://registry.yarnpkg.com/http-parser-js/-/http-parser-js-0.4.10.tgz#92c9c1374c35085f75db359ec56cc257cbb93fa4"
   integrity sha1-ksnBN0w1CF912zWexWzCV8u5P6Q=
 
-hydrogen-cli@0.7.0-beta.0:
-  version "0.7.0-beta.0"
-  resolved "https://registry.yarnpkg.com/hydrogen-cli/-/hydrogen-cli-0.7.0-beta.0.tgz#c6f179f460ba489673fbf278d2e3e571e97a7eb1"
-  integrity sha512-P27lMPgVtYt774PGmpJmZDFA614CC+Ra0wnPmicelj7Ki0yfW5MsSyvvM50xuFvULj/F/fND/G5PnIgb+Ug4wA==
+hydrogen-cli@0.7.0-beta.1:
+  version "0.7.0-beta.1"
+  resolved "https://registry.yarnpkg.com/hydrogen-cli/-/hydrogen-cli-0.7.0-beta.1.tgz#9edd6c74a73850dffffd419ef1b87d1216221585"
+  integrity sha512-L050HyB1mcegWGXZixf9IC6+hlYk44+MljcRlRIRKBA7K2urWN1sUzQow+lEVA1Jhvmu2p53X5xq9YX5KL6d9Q==
   dependencies:
     "@oclif/command" "^1"
     "@oclif/config" "^1"
