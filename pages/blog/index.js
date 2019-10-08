@@ -16,7 +16,7 @@ const BlogPost = ({ title, content, image, id }) => html`
   </article>
 `;
 
-const page = ({ banner, blogPosts }) => html`
+const page = ({ data: { banner, blogPosts } }) => html`
   <main>
     <section class="top-image">
       <figure class="top-image-figure">

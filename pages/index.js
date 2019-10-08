@@ -41,7 +41,7 @@ const Banner = ({ image, heading, text, link, buttonText }, index) => html`
   </article>
 `;
 
-const page = ({ banner }) => html`
+const page = ({ data: { banner } }) => html`
   <main>
     <section class="center-split">
       $${Banner(banner.left)}
