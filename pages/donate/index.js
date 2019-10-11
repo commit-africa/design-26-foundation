@@ -1,7 +1,6 @@
 const html = require('html-template-tag');
 const axios = require('axios');
 const { AboutBlock } = require('../../components/AboutBlock');
-const { Header } = require('../../components/Header');
 
 const page = ({ data: { banner, aboutBlocks } }) => html`
   <main>

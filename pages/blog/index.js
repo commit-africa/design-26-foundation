@@ -49,32 +49,26 @@ const page = ({ data: { banner, blogPosts } }) => html`
 
 const transformBlogTitleToUrl = ({ id, title }) => `${id}-${title.toLowerCase().split(' ').join('-')}`;
 
-function transformData (response) {
-  return {
-    banner: {
-      image: {
-        url: response.acf.banner_image.url,
-        text: response.acf.banner_image.alt,
-      },
-      heading: response.acf.banner_header,
-      text: response.acf.banner_content,
+const transformData = (response)  => ({
+  banner: {
+    image: {
+      url: response.acf.banner_image.url,
+      text: response.acf.banner_image.alt,
     },
-  }
-}
+    heading: response.acf.banner_header,
+    text: response.acf.banner_content,
+  },
+});
 
-function transformPostsArray (response) {
-  return response.map(function (props) {
-    return {
-      id: props.id,
-      title: props.title.rendered,
-      content: props.excerpt.rendered,
-      image: {
-        url: props.acf.image.url,
-        text: props.acf.image.text,
-      }
-    }
-  })
-}
+const transformPostsArray = (response) => response.map((props) => ({
+  id: props.id,
+  title: props.title.rendered,
+  content: props.excerpt.rendered,
+  image: {
+    url: props.acf.image.url,
+    text: props.acf.image.text,
+  }
+}));
 
 module.exports = {
   layout: 'default',
