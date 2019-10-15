@@ -4,7 +4,7 @@ const Footer = () => html`
   <footer class="main-footer">
     <div class="footer-content">
       <p>
-        <strong>PBO number:</strong> 123456789
+        <strong>PBO number:</strong> 930065516
       </p>
       <div class="social-links">
         <a href="https://www.instagram.com/design26foundation/" target="_blank">
