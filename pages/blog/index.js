@@ -1,8 +1,7 @@
 const html = require('html-template-tag');
 const axios = require('axios');
-const { Header } = require('../../components/Header');
 
-const BlogPost = ({ title, content, buttonUrl, image, id }) => html`
+const BlogPost = ({ title, content, image, id }) => html`
   <article class="blog-image">
     <figure>
       <img src="${image.url}" alt="${image.text}">
@@ -12,12 +11,12 @@ const BlogPost = ({ title, content, buttonUrl, image, id }) => html`
       <p class="excerpt">
         $${content}
       </p>
-      <a href="${'/post?id=' + id}" class="blog-page-link">Read the story</a>
+      <a href="/blog/${transformBlogTitleToUrl({ id, title })}" class="blog-page-link">Read the story</a>
     </div>
   </article>
 `;
 
-const page = ({ banner, blogPosts }) => html`
+const page = ({ data: { banner, blogPosts } }) => html`
   <main>
     <section class="top-image">
       <figure class="top-image-figure">
@@ -48,39 +47,35 @@ const page = ({ banner, blogPosts }) => html`
   </main>
 `;
 
-function transformData (response) {
-  return {
-    banner: {
-      image: {
-        url: response.acf.banner_image.url,
-        text: response.acf.banner_image.alt,
-      },
-      heading: response.acf.banner_header,
-      text: response.acf.banner_content,
-    },
-  }
-}
+const transformBlogTitleToUrl = ({ id, title }) => `${id}-${title.toLowerCase().split(' ').join('-')}`;
 
-function transformPostsArray (response) {
-  return response.map(function (props) {
-    return {
-      id: props.id,
-      title: props.title.rendered,
-      content: props.excerpt.rendered,
-      image: {
-        url: props.acf.image.url,
-        text: props.acf.image.text,
-      }
-    }
-  })
-}
+const transformData = (response)  => ({
+  banner: {
+    image: {
+      url: response.acf.banner_image.url,
+      text: response.acf.banner_image.alt,
+    },
+    heading: response.acf.banner_header,
+    text: response.acf.banner_content,
+  },
+});
+
+const transformPostsArray = (response) => response.map((props) => ({
+  id: props.id,
+  title: props.title.rendered,
+  content: props.excerpt.rendered,
+  image: {
+    url: props.acf.image.url,
+    text: props.acf.image.text,
+  }
+}));
 
 module.exports = {
   layout: 'default',
   page,
   data: async () => {
     const { data } = await axios.get(`${process.env.API_URL}/pages/14`);
-    const { data: blogPosts } = await axios.get(`${process.env.API_URL}/posts`); 
+    const { data: blogPosts } = await axios.get(`${process.env.API_URL}/posts`);
 
     return {
       ...transformData(data),

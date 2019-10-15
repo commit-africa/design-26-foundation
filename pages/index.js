@@ -41,7 +41,7 @@ const Banner = ({ image, heading, text, link, buttonText }, index) => html`
   </article>
 `;
 
-const page = ({ banner }) => html`
+const page = ({ data: { banner } }) => html`
   <main>
     <section class="center-split">
       $${Banner(banner.left)}
@@ -60,7 +60,6 @@ function transformData (response) {
           url: response.acf.banner_image_left.url,
           text: response.acf.banner_image_left.alt,
         },
-        image: response.acf.banner_image_left,
         heading: response.acf.banner_heading_left,
         text: response.acf.banner_text_left,
         buttonText: response.acf.button_text_text_left,
@@ -100,7 +99,7 @@ module.exports = {
       ...transformData(banners),
     };
   },
-  head: ({ path, config }) => [
+  head: ({ config }) => [
     ['title', {}, config.name],
   ],
 };

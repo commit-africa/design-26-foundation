@@ -1,9 +1,8 @@
 const html = require('html-template-tag');
 const axios = require('axios');
 const { AboutBlock } = require('../../components/AboutBlock');
-const { Header } = require('../../components/Header');
 
-const page = ({ banner, aboutBlocks }) => html`
+const page = ({ data: { banner, aboutBlocks } }) => html`
   <main>
     <section class="top-image">
       <figure class="top-image-figure">
@@ -32,31 +31,26 @@ const page = ({ banner, aboutBlocks }) => html`
   </main>
 `;
 
-function transformData (response) {
-  return {
-    banner: {
-      image: {
-        url: response.acf.banner_image.url,
-        text: response.acf.banner_image.alt,
-      },
-      heading: response.acf.banner_title,
-      text: response.acf.banner_text,
+const transformData = (response) => ({
+  banner: {
+    image: {
+      url: response.acf.banner_image.url,
+      text: response.acf.banner_image.alt,
     },
-    aboutBlocks: response.acf.home_block_repeater.map(function (props) {
-      return {
-        title: props.block_title,
-        content: props.block_content,
-        image: {
-          url: props.block_image.url,
-          text: props.block_image.alt,
-        }
-      }
-    })
-  }
-};
+    heading: response.acf.banner_title,
+    text: response.acf.banner_text,
+  },
+  aboutBlocks: response.acf.home_block_repeater.map((props) => ({
+    title: props.block_title,
+    content: props.block_content,
+    image: {
+      url: props.block_image.url,
+      text: props.block_image.alt,
+    }
+  })),
+})
 
 module.exports = {
-  layout: 'default',
   page,
   data: async () => {
     const { data: banner } = await axios.get(`${process.env.API_URL}/pages/8`);
@@ -65,7 +59,7 @@ module.exports = {
       ...transformData(banner),
     };
   },
-  head: ({ path, config }) => [
+  head: ({ config }) => [
     ['title', {}, `About | ${config.name}`],
   ],
 };

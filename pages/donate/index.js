@@ -1,9 +1,8 @@
 const html = require('html-template-tag');
 const axios = require('axios');
 const { AboutBlock } = require('../../components/AboutBlock');
-const { Header } = require('../../components/Header');
 
-const page = ({ banner, aboutBlocks }) => html`
+const page = ({ data: { banner, aboutBlocks } }) => html`
   <main>
     <section class="top-image">
       <figure class="top-image-figure">
