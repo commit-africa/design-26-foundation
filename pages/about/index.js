@@ -15,7 +15,7 @@ const page = ({ data: { banner, aboutBlocks } }) => html`
         </figcaption>
       </figure>
     </section>
-    ${aboutBlocks.map(block => AboutBlock(block))}
+    ${aboutBlocks.map(AboutBlock())}
     <section class="funding-info">
       <article>
         <div class="funding-info-block watch-video">
@@ -52,13 +52,7 @@ const transformData = (response) => ({
 
 module.exports = {
   page,
-  data: async () => {
-    const { data: banner } = await axios.get(`${process.env.API_URL}/pages/8`);
-
-    return {
-      ...transformData(banner),
-    };
-  },
+  data: async () => axios.get(`${process.env.API_URL}/pages/8`).then(({ data }) => transformData(data)),
   head: ({ config }) => [
     ['title', {}, `About | ${config.name}`],
   ],

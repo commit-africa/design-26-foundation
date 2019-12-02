@@ -15,7 +15,7 @@ const page = ({ data: { banner, aboutBlocks } }) => html`
         </figcaption>
       </figure>
     </section>
-    ${aboutBlocks.map(block => AboutBlock(block))}
+    ${aboutBlocks.map(AboutBlock(true))}
     <section class="funding-info">
       <article>
         <div class="funding-info-block watch-video">
