@@ -18,6 +18,13 @@ module.exports = ({ title, content, head }) => html`
     <link rel="preload" as="font" type="font/woff2" href="/public/assets/fonts/Montserrat-Regular.woff2" crossorigin>
     $${head}
     $${title ? html`<title>${title}</title>` : ''}
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+          .then(() => console.log('Registered successfully'))
+          .catch(e => console.log(e))
+      }
+    </script>
   </head>
   <body>
     <div id="home-app" class="site-wrapper">
