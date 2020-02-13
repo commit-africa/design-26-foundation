@@ -7,7 +7,7 @@ const AboutBlock = ({ title, content, image }, index) => html`
     index % 2 ? (
       html`<section class="two-column-grid about-info">
         <figure class="about-image">
-          <img src="${image.url}" alt="${image.text}">
+          <img data-src="${image.url}" alt="${image.text}">
         </figure>
         <article class="about-text">
           <h2>${title}</h2>
@@ -21,7 +21,7 @@ const AboutBlock = ({ title, content, image }, index) => html`
           <p>${content}</p>
         </article>
         <figure class="about-image">
-          <img src="${image.url}" alt="${image.text}">
+          <img data-src="${image.url}" alt="${image.text}">
         </figure>
       </section>`
     )
@@ -31,7 +31,7 @@ const AboutBlock = ({ title, content, image }, index) => html`
 const Banner = ({ image, heading, text, buttonUrl, buttonText }) => html`
   <article>
     <figure class="split-image">
-      <img src="${image.url}" alt="${image.text}" />
+      <img data-src="${image.url}" alt="${image.text}" />
     </figure>
     <div class="cta">
       <h2>${heading}</h2>

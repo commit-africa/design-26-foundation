@@ -4,7 +4,7 @@ const FundingInfo = () => html`
   <section class="funding-info">
     <article>
       <div class="funding-info-block watch-video">
-        <img src="/public/assets/img/photos/sewing-four.jpg" alt="">
+        <img data-src="/public/assets/img/photos/sewing-four.jpg" alt="">
       </div>
       <div class="funding-info-block stats">
         <h4>With your support</h4>

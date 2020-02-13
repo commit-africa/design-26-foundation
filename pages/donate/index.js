@@ -7,7 +7,7 @@ const page = ({ data: { banner, aboutBlocks } }) => html`
   <main>
     <section class="top-image">
       <figure class="top-image-figure">
-        <img src="${banner.image.url}" alt="${banner.image.text}">
+        <img data-src="${banner.image.url}" alt="${banner.image.text}">
         <figcaption>
           <h1>
             ${banner.heading}

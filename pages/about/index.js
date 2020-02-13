@@ -6,7 +6,7 @@ const page = ({ data: { banner, aboutBlocks } }) => html`
   <main>
     <section class="top-image">
       <figure class="top-image-figure">
-        <img src="${banner.image.url}" alt="${banner.image.text}">
+        <img data-src="${banner.image.url}" alt="${banner.image.text}">
         <figcaption>
           <h1>
             ${banner.heading}
@@ -19,7 +19,7 @@ const page = ({ data: { banner, aboutBlocks } }) => html`
     <section class="funding-info">
       <article>
         <div class="funding-info-block watch-video">
-          <img src="/public/assets/img/photos/sewing-four.jpg" alt="">
+          <img data-src="/public/assets/img/photos/sewing-four.jpg" alt="">
         </div>
         <div class="funding-info-block stats">
           <h4>With your support</h4>
