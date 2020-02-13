@@ -5,7 +5,7 @@ const page = () => html`
   <main>
     <section class="top-image">
       <figure class="top-image-figure">
-        <img src="/public/assets/img/photos/about-page-banner.jpg" alt="">
+        <img data-src="/public/assets/img/photos/about-page-banner.jpg" alt="">
         <figcaption>
           <h1>
             Get in touch with us
@@ -22,7 +22,7 @@ const page = () => html`
           <br>
           Small Business Management graduate
         </p>
-        <img src="/public/assets/img/photos/suraya-williams.jpg">
+        <img data-src="/public/assets/img/photos/suraya-williams.jpg">
         <h3>Design26 Foundation</h3>
         <div class="address-details contact-column" itemscope="" itemtype="http://schema.org/Organization">
           <div itemscope="" itemtype="http://schema.org/PostalAddress">
@@ -35,7 +35,7 @@ const page = () => html`
           <span class="main-cta">
             Email: <a class="internal-link" href="mailto:info@design26foundation.org.za=Website - Info Enquiry" itemprop="email">info@design26foundation.org.za</a>
           </span>
-          <a href="https://www.google.com/maps/place/49+Martin+Rd,+Westgate,+Cape+Town,+7798,+South+Africa/@-34.048008,18.588051,15z/data=!4m5!3m4!1s0x1dcc4673d661bf77:0x70cc594078f41183!8m2!3d-34.0480083!4d18.5880509?hl=en-GB" class="link-map" title="Get directions" target="_blank"> <img src="/public/assets/img/map.jpg" alt="">
+          <a href="https://www.google.com/maps/place/49+Martin+Rd,+Westgate,+Cape+Town,+7798,+South+Africa/@-34.048008,18.588051,15z/data=!4m5!3m4!1s0x1dcc4673d661bf77:0x70cc594078f41183!8m2!3d-34.0480083!4d18.5880509?hl=en-GB" class="link-map" title="Get directions" target="_blank"> <img data-src="/public/assets/img/map.jpg" alt="">
           </a>
         </div>
       </article>

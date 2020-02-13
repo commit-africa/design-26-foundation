@@ -8,7 +8,7 @@ const AboutBlock = (donationButton) => ({ title, content, image, buttonText, but
       $${donationButton ? (html`<a class="button" href="${buttonUrl}">${buttonText}</a>`) : ('')}
     </article>
     <figure class="about-image">
-      <img src="${image.url}" alt="${image.text}">
+      <img data-src="${image.url}" alt="${image.text}">
     </figure>
   </section>
 `;

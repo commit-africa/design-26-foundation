@@ -3,11 +3,11 @@ const axios = require('axios');
 const { AboutBlock } = require('../../components/AboutBlock');
 const { FundingInfo } = require('../../components/FundingInfo')
 
-const page = ({ data: { banner, aboutBlocks } }) => html`
+const page = async ({ data: { banner, aboutBlocks } }) => html`
   <main>
     <section class="top-image">
       <figure class="top-image-figure">
-        <img src="${banner.image.url}" alt="${banner.image.text}">
+        <img data-src="${banner.image.url}" alt="${banner.image.text}">
         <figcaption>
           <h1>
             ${banner.heading}
@@ -17,7 +17,7 @@ const page = ({ data: { banner, aboutBlocks } }) => html`
       </figure>
     </section>
     ${aboutBlocks.map(AboutBlock(true))}
-    $${FundingInfo()}
+    $${await FundingInfo()}
   </main>
 `;
 
