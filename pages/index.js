@@ -41,14 +41,14 @@ const Banner = ({ image, heading, text, buttonUrl, buttonText }) => html`
   </article>
 `;
 
-const page = ({ data: { banner } }) => html`
+const page = async ({ data: { banner } }) => html`
   <main>
     <section class="center-split">
       $${Banner(banner.left)}
       $${Banner(banner.right)}
     </section>
     ${banner.aboutBlocks.map((block, index) => AboutBlock(block, index))}
-    $${FundingInfo()}
+    $${await FundingInfo()}
   </main>
 `;
 
