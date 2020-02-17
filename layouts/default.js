@@ -2,7 +2,7 @@ const html = require('html-template-tag');
 const { Header } = require('../components/Header');
 const { Footer } = require('../components/Footer');
 
-module.exports = ({ title, content, head }) => html`
+module.exports = async ({ title, content, head }) => html`
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -24,7 +24,7 @@ module.exports = ({ title, content, head }) => html`
     <div id="home-app" class="site-wrapper">
       $${Header()}
       $${content}
-      $${Footer()}
+      $${await Footer()}
     </div>
   </body>
   </html>
