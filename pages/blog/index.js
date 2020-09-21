@@ -33,7 +33,7 @@ const page = async ({ data: { banner, blogPosts } }) => html`
     <section class="four-column-grid blog-landing">
       ${blogPosts.map(post => BlogPost(post))}
     </section>
-    ${await FundingInfo()}
+    $${await FundingInfo()}
   </main>
 `;
 

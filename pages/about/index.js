@@ -17,7 +17,7 @@ const page = async ({ data: { banner, aboutBlocks } }) => html`
       </figure>
     </section>
     ${aboutBlocks.map(AboutBlock())}
-    ${await FundingInfo()}
+    $${await FundingInfo()}
   </main>
 `;
 
