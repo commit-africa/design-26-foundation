@@ -1,8 +1,9 @@
 const html = require('html-template-tag');
 const axios = require('axios');
 const { AboutBlock } = require('../../components/AboutBlock');
+const { FundingInfo } = require('../../components/FundingInfo');
 
-const page = ({ data: { banner, aboutBlocks } }) => html`
+const page = async ({ data: { banner, aboutBlocks } }) => html`
   <main>
     <section class="top-image">
       <figure class="top-image-figure">
@@ -16,18 +17,7 @@ const page = ({ data: { banner, aboutBlocks } }) => html`
       </figure>
     </section>
     ${aboutBlocks.map(AboutBlock())}
-    <section class="funding-info">
-      <article>
-        <div class="funding-info-block watch-video">
-          <img data-src="/public/assets/img/photos/sewing-four.jpg" alt="">
-        </div>
-        <div class="funding-info-block stats">
-          <h4>With your support</h4>
-          <p>We've trained <span class="stats-actual">30</span> young girls and can help many more.</p>
-          <a class="button" href="/about">Read more about us</a>
-        </div>
-      </article>
-    </section>
+    ${await FundingInfo()}
   </main>
 `;
 
