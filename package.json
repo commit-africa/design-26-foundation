@@ -6,7 +6,7 @@
   "author": "Shailen Naidoo <naidooshailen648@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.28.0",
     "date-fns": "^2.4.1",
     "html-template-tag": "^3.1.0",
     "hydrogen-cli": "^1.0.0-beta.1"
